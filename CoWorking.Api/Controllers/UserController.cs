@@ -37,7 +37,7 @@ namespace CoWorking.Api.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromForm]int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
@@ -47,6 +47,21 @@ namespace CoWorking.Api.Controllers
             catch(Exception ex)
             {
                 _logger.LogInformation(ex, $"Delete User Error");
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            try
+            {
+                var item = await _repository.User.GetUser(id);
+                return Ok(item);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogInformation(ex, $"get User Error");
                 return BadRequest(ex.Message);
             }
         }

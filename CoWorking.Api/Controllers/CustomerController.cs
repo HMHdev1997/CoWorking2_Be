@@ -35,6 +35,21 @@ namespace CoWorking.Api.Controllers
         //    }
         //}
 
+        [HttpGet]
+        public async Task<IActionResult> GetCustomer(int id)
+        {
+            try
+            {
+                var customer = await _repository.Customer.GetById(id);
+                return Ok(customer);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"Get Customer Error");
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         [HttpDelete]
         public async Task<IActionResult> DeleteAync([FromForm]int id)

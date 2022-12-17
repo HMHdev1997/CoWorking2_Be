@@ -2,6 +2,7 @@
 using CoWorking.Biz.Model.Customers;
 using CoWorking.Data.Access;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
@@ -48,9 +49,10 @@ namespace CoWorking.Biz.Customer
             await _context.SaveChangesAsync();
         }
 
-        public Task<View> GetById(int id)
+        public async Task<View> GetById(int id)
         {
-            throw new NotImplementedException();
+            var item =await _context.Customers.FirstOrDefaultAsync(q => q.ID == id);
+            return _mapper.Map<Data.Model.Customer, View>(item);
         }
 
         private string ProcessUploadedFile(New model)

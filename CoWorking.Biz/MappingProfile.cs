@@ -52,6 +52,7 @@ namespace CoWorking.Biz
 
             CreateMap<Data.Model.User, Model.User.New>().ReverseMap();
             CreateMap<Data.Model.User, Model.User.View>().ReverseMap();
+            CreateMap<Data.Model.User, Model.User.ViewUserAndCustomer>().ReverseMap();
         }
     }
 }

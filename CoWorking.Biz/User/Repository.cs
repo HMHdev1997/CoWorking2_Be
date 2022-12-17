@@ -2,6 +2,7 @@
 using CoWorking.Biz.Common;
 using CoWorking.Biz.Model.User;
 using CoWorking.Data.Access;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,11 @@ namespace CoWorking.Biz.User
             await _context.SaveChangesAsync();
         }
 
+        public async Task<ViewUserAndCustomer> GetUser(int id)
+        {
+            var user =await  _context.Users.Include(x=>x.Customer).FirstOrDefaultAsync(x => x.Id==id);
+            return _mapper.Map<Data.Model.User, Model.User.ViewUserAndCustomer>(user);
 
+        }
     }
 }
