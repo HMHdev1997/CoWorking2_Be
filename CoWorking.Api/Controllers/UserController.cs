@@ -35,6 +35,21 @@ namespace CoWorking.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromForm]int id)
+        {
+            try
+            {
+                await _repository.User.DeleteAync(id);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogInformation(ex, $"Delete User Error");
+                return BadRequest(ex.Message);
+            }
+        }
        
     }
 }

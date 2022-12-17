@@ -12,6 +12,7 @@ namespace CoWorking.Data.Model
     public class Office
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
         [ForeignKey("AreaId")]
         public int AreaId { set; get; }

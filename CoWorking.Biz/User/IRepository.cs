@@ -8,6 +8,7 @@ namespace CoWorking.Biz.User
 {
     public interface IRepository
     {
-        Task<Model.User.View> CreateAync(Model.User.New model); 
+        Task<Model.User.View> CreateAync(Model.User.New model);
+        Task DeleteAync(int id);
     }
 }

@@ -8,6 +8,7 @@ namespace CoWorking.Data.Model
     public class User
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { set; get; }
 
         [Required(ErrorMessage = "Phải có tên")]
