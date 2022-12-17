@@ -56,15 +56,30 @@ namespace CoWorking.Api.Controllers
         {
             try
             {
-                var item = await _repository.User.GetUser(id);
+                var item = await _repository.User.GetById(id);
                 return Ok(item);
             }
             catch(Exception ex)
+            {
+                _logger.LogInformation(ex, $"get User {id} Error");
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("Login")]
+        public async Task<IActionResult> LoginUser(string email, string password, int phoneNumber)
+        {
+            try
+            {
+                var item = await _repository.User.GetUser(email, password, phoneNumber);
+                return Ok(item);
+            }
+            catch (Exception ex)
             {
                 _logger.LogInformation(ex, $"get User Error");
                 return BadRequest(ex.Message);
             }
         }
-       
+
+
     }
 }

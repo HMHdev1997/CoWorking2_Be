@@ -29,6 +29,7 @@ namespace CoWorking.Biz.Customer
             string uniqueFileName = ProcessUploadedFile(model);
             var user = new Data.Model.Customer
             {
+                UserId = model.UserId,
                 FullName = model.FullName,
                 ImagePart = uniqueFileName,
                 IdentifierCode = model.IdentifierCode,
@@ -61,7 +62,7 @@ namespace CoWorking.Biz.Customer
 
             if (model.ImagePart != null)
             {
-                string uploadsFolder = Path.Combine(_enviromemt.WebRootPath, "Images");
+                string uploadsFolder = Path.Combine(_enviromemt.WebRootPath, "User");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ImagePart.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))

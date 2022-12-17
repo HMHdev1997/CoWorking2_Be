@@ -20,20 +20,20 @@ namespace CoWorking.Api.Controllers
             _logger = logger;
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> CreateAync([FromForm]New model)
-        //{
-        //    try
-        //    {
-        //        var user = await _repository.Customer.CreateAync(model);
-        //        return Ok(user);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogInformation(ex, $"create Customer Error");
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+        [HttpPost]
+        public async Task<IActionResult> CreateAync([FromForm] New model)
+        {
+            try
+            {
+                var user = await _repository.Customer.CreateAync(model);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"create Customer Error");
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetCustomer(int id)
@@ -49,6 +49,7 @@ namespace CoWorking.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        
 
 
         [HttpDelete]

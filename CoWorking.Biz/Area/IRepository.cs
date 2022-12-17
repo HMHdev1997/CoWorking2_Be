@@ -9,5 +9,6 @@ namespace CoWorking.Biz.Area
     public interface IRepository
     {
         Task<Model.Area.View> CreateAync(Model.Area.New model);
+        Task<Model.Area.View> UpdateAync(Model.Area.Edit model);
     }
 }

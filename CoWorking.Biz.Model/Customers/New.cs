@@ -4,7 +4,8 @@ namespace CoWorking.Biz.Model.Customers
 {
     public class New : ProcessUploadedFile
     {
-        public int ID { set; get; }
+  
+        public int UserId { set; get; }
         public string FullName { set; get; }
         public int IdentifierCode { set; get; }
         public string Address { set; get; }

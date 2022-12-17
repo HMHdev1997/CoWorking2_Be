@@ -32,5 +32,15 @@ namespace CoWorking.Biz.Area
             await _context.SaveChangesAsync();
             return _mapper.Map<Data.Model.Area, View>(item);
         }
+
+        public async Task<View> UpdateAync(Edit model)
+        {
+            var oldArea = await _context.Areas.FindAsync(model.ID);
+            var item = _mapper.Map(model, oldArea);
+            _context.Areas.UpdateRange(item);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<Data.Model.Area, Model.Area.View>(item);
+            
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace CoWorking.Biz.Model.Customers
     public class View
     {
 
-     
+        
         public string ImagePart { set; get; }
         public int IdentifierCode { set; get; }
         public string Address { set; get; }

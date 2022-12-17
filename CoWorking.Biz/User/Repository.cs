@@ -40,16 +40,36 @@ namespace CoWorking.Biz.User
 
         public async Task DeleteAync(int id)
         {
-            var item = new Data.Model.User() {Id = id };
-            await _context.Users.AddRangeAsync(item);
+            var item =await _context.Users.Include(x => x.Customer).FirstOrDefaultAsync(x => x.Id == id);
+           _context.Users.RemoveRange(item);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ViewUserAndCustomer> GetUser(int id)
+        public async Task<ViewUserAndCustomer> GetById(int id)
         {
             var user =await  _context.Users.Include(x=>x.Customer).FirstOrDefaultAsync(x => x.Id==id);
             return _mapper.Map<Data.Model.User, Model.User.ViewUserAndCustomer>(user);
 
+        }
+
+        public async Task<ViewUserAndCustomer> GetUser(string email, string password, int phoneNumber)
+        {
+            var Login = await _context.Users.FirstOrDefaultAsync(x => x.Email == email || x.PhoneNumbers == phoneNumber);
+            if(Login == null)
+            {
+                return null;
+            }
+            else
+            {
+                if(Login.Password == password)
+                {
+                    return _mapper.Map<Data.Model.User, Model.User.ViewUserAndCustomer>(Login);
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
     }
 }

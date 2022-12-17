@@ -14,6 +14,7 @@ namespace CoWorking.Biz
         {
             CreateMap<Data.Model.Area, Model.Area.New>().ReverseMap();
             CreateMap<Data.Model.Area, Model.Area.View>().ReverseMap();
+            CreateMap<Data.Model.Area, Model.Area.Edit>().ReverseMap();
 
        
             CreateMap<Data.Model.Customer, Model.Customers.View>().ReverseMap();
