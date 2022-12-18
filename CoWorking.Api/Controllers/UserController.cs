@@ -66,11 +66,11 @@ namespace CoWorking.Api.Controllers
             }
         }
         [HttpGet("Login")]
-        public async Task<IActionResult> LoginUser(string email, string password, int phoneNumber)
+        public async Task<IActionResult> LoginUser(string email="", string password = "", int? phoneNumber=-1)
         {
             try
             {
-                var item = await _repository.User.GetUser(email, password, phoneNumber);
+                var item = await _repository.User.GetUser(email, password, (phoneNumber!=null)? (int)phoneNumber:-1);
                 return Ok(item);
             }
             catch (Exception ex)
