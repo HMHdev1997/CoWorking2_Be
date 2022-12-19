@@ -9,7 +9,8 @@ namespace CoWorking.Biz.Office
 {
     public interface IRepository
     {
-        Task<Model.Offices.View> CreateAync(Model.Offices.New model);
-       
+        Task<int> AddImage(int OfficeId, Model.OfficeImages.New request);
+        Task<Model.Offices.View> CreateAync(Model.Offices.OfficeCreateRequest request);
+        Task<Model.Offices.View> GetById(int id);
     }
 }

@@ -28,6 +28,6 @@ namespace CoWorking.Data.Model
         public int Status { set; get; }
         public virtual List<Booking> Bookings { set; get; }
         public virtual List<FeedBack> FeedBacks { set; get; }
-        public virtual Customer Customer { set; get; }
+        public virtual  Customer Customer { set; get; } 
     }
 }

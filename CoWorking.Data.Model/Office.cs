@@ -24,7 +24,6 @@ namespace CoWorking.Data.Model
         [MaxLength(500)]
         public string GenenalDecription { set; get; }
         public string Detail { set; get; }
-        public string Device { set; get; }
         public string Tags { set; get; }
         public bool? HotFlag { set; get; }
         public int? ViewCount { set; get; }

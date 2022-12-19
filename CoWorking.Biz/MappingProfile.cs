@@ -21,9 +21,12 @@ namespace CoWorking.Biz
 
             CreateMap<Data.Model.CategoryOffice, Model.CategoryOffice.New>().ReverseMap();
             CreateMap<Data.Model.CategoryOffice, Model.CategoryOffice.View>().ReverseMap();
+            CreateMap<Data.Model.CategoryOffice, Model.CategoryOffice.Edit>().ReverseMap();
 
+            CreateMap<Data.Model.CategoryService, Model.CategoryService.Edit>().ReverseMap();
             CreateMap<Data.Model.CategoryService, Model.CategoryService.New>().ReverseMap();
             CreateMap<Data.Model.CategoryService, Model.CategoryService.View>().ReverseMap();
+            
 
             CreateMap<Data.Model.CategorySpace, Model.CategorySpace.New>().ReverseMap();
             CreateMap<Data.Model.CategorySpace, Model.CategorySpace.View>().ReverseMap();
@@ -34,7 +37,7 @@ namespace CoWorking.Biz
             CreateMap<Data.Model.FeedBack, Model.FeedBack.New>().ReverseMap();
             CreateMap<Data.Model.FeedBack, Model.FeedBack.View>().ReverseMap();
 
-            CreateMap<Data.Model.Office, Model.Offices.New>().ReverseMap();
+            //CreateMap<Data.Model.Office, Model.Offices.New>().ReverseMap();
             CreateMap<Data.Model.Office, Model.Offices.Edit>().ReverseMap();
             CreateMap<Data.Model.Office, Model.Offices.View>().ReverseMap();
 
@@ -54,6 +57,8 @@ namespace CoWorking.Biz
             CreateMap<Data.Model.User, Model.User.New>().ReverseMap();
             CreateMap<Data.Model.User, Model.User.View>().ReverseMap();
             CreateMap<Data.Model.User, Model.User.ViewUserAndCustomer>().ReverseMap();
+
+            CreateMap<Data.Model.OfficeImage, Model.OfficeImages.View>().ReverseMap();
         }
     }
 }

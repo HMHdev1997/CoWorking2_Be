@@ -28,8 +28,9 @@ namespace CoWorking.Data.Model
         public int Age { set; get; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{dd-MM-yyyy}")]
         public DateTime? DateOfBirth { set; get; }
-
+        [DisplayFormat(DataFormatString = "{dd-MM-yyyy}")]
         public DateTime? RegistrationDate { set; get; }
         public virtual User User { set; get; }
 

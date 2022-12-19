@@ -31,6 +31,7 @@ namespace CoWorking.Data.Model
         [MaxLength(5)]
         public string Gender { set; get; }
         public int Age { set; get; }
+        [DisplayFormat(DataFormatString = "{dd-MM-yyyy}")]
         public DateTime? DateOfBirth { set; get; }
         public DateTime? DateOfWork { set; get; }
         public virtual Role Role { set; get; }

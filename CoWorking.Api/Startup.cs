@@ -1,4 +1,5 @@
 using CoWorking.Biz;
+using CoWorking.Biz.Common;
 using CoWorking.Data.Access;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using Newtonsoft.Json.Serialization;
 
 namespace CoWorking.Api
 {
@@ -27,6 +30,11 @@ namespace CoWorking.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddControllers()
+            .AddNewtonsoftJson(options =>
+                 {
+                     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                 });
             switch (Configuration["DatabaseProvider"])
             {
                 case "Mssql":
@@ -35,6 +43,7 @@ namespace CoWorking.Api
             }
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped<IRepositoryWapper, RepositoryWapper>();
+            services.AddTransient<IStorageService, FileStorageService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CoWorkingApi", Version = "v1" });

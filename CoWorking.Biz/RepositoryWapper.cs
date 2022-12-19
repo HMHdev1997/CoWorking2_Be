@@ -17,15 +17,15 @@ namespace CoWorking.Biz
         private readonly DomainDbContext _context;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _enviromemt;
-      
+        private readonly IStorageService _storageService;
 
 
-
-        public RepositoryWapper(DomainDbContext context, IMapper mapper, IWebHostEnvironment environment)
+        public RepositoryWapper(DomainDbContext context, IMapper mapper, IWebHostEnvironment environment, IStorageService storageService)
         {
             _context = context;
             _mapper = mapper;         
             _enviromemt = environment;
+            _storageService = storageService;
 
         }
 
@@ -45,9 +45,12 @@ namespace CoWorking.Biz
         public CategorySpace.IRepository CategorySpace => _categorySpace ??= new CategorySpace.Repository(_context, _mapper) ;
 
         private Office.IRepository _office;
-        public Office.IRepository Office => _office ??= new Office.Repository(_context, _mapper, _enviromemt);
+        public Office.IRepository Office => _office ??= new Office.Repository(_context, _mapper, _enviromemt,_storageService);
 
         private User.IRepository _user;
         public User.IRepository User => _user ??= new User.Repository(_context, _mapper);
+
+        private OfficeImage.IRepository _officeImage;
+        public OfficeImage.IRepository OfficeImage => _officeImage ??= new OfficeImage.Repository(_context, _mapper, _enviromemt);
     }
 }

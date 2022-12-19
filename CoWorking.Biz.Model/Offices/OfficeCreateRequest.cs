@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace CoWorking.Biz.Model.Offices
 {
-    public class New
+    public class OfficeCreateRequest
     {
-        public int ID { set; get; }
+    
   
         public int AreaId { set; get; }
         public string NameOffice { set; get; }
         public string Address { set; get; }
         public string GenenalDecription { set; get; }
-        public string Detail { set; get; }
-        public string Device { set; get; }
+        public string Detail { set; get; } 
         public string Tags { set; get; }
         public bool? HotFlag { set; get; }
         public int? ViewCount { set; get; }
@@ -27,6 +26,7 @@ namespace CoWorking.Biz.Model.Offices
         public string CreateBy { set; get; }
         public DateTime? ModifiedDate { set; get; }
         public string ModifiedBy { set; get; }
-        public virtual List<Model.OfficeImages.New> NewsImage { set; get; }
+        public IFormFile ThumbnailImage { set; get; }
+        
     }
 }

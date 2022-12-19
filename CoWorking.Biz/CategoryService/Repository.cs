@@ -32,5 +32,14 @@ namespace CoWorking.Biz.CategoryService
             await _context.SaveChangesAsync();
             return _mapper.Map<Data.Model.CategoryService, View>(item);
         }
+
+        public async Task<View> Update(Edit model)
+        {
+            var oldService = await _context.CategoryServices.FindAsync(model.ID);
+            var item = _mapper.Map(model, oldService);
+            _context.CategoryServices.UpdateRange(item);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<Data.Model.CategoryService, View>(item);
+        }
     }
 }

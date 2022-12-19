@@ -9,5 +9,6 @@ namespace CoWorking.Biz.CategoryService
     public interface IRepository
     {
         Task<Model.CategoryService.View> CreateAync(Model.CategoryService.New model);
+        Task<Model.CategoryService.View> Update(Model.CategoryService.Edit model);
     }
 }

@@ -15,6 +15,7 @@ namespace CoWorking.Biz
         CategorySpace.IRepository CategorySpace { get; }
         Area.IRepository Area { get; }
         Office.IRepository Office { get; }
+        OfficeImage.IRepository OfficeImage { get; }
 
     }
 }
