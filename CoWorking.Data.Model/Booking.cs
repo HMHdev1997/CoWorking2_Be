@@ -21,7 +21,7 @@ namespace CoWorking.Data.Model
         public DateTime? StartTime { set; get; }
         public DateTime? EndTime { set; get; }
         public double Total { set; get; }
-        public DateTime? CreatedDate { set; get; }
+        public DateTime CreatedDate { set; get; }
         public virtual User User { set; get; }
         public virtual Office Office { set; get; }      
         public virtual List<CategorySpace> Spaces { set; get; }

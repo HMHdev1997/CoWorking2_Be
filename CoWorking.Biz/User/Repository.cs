@@ -32,6 +32,13 @@ namespace CoWorking.Biz.User
             return _mapper.Map<Data.Model.User, View>(item);
         }
 
+        public Task<ViewUserCustomer> CreateUserInfo(CreateUserInfoRequest model)
+        {
+             
+            return null;
+            
+        }
+
         public async Task<int> DeleteAync(int id)
         {
             var item = await _context.Users.Include(x => x.Customer).FirstOrDefaultAsync(x => x.Id == id);
@@ -43,7 +50,7 @@ namespace CoWorking.Biz.User
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<Model.User.ViewUserCustomer> GetById(int id)
+        public async Task<ViewUserCustomer> GetById(int id)
         {
             var user = await (from a in _context.Users
                               join b in _context.Customers
@@ -107,5 +114,7 @@ namespace CoWorking.Biz.User
                 }
             
         }
+
+        
     }
 }

@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoWorking.Biz.Model.Customers
+namespace CoWorking.Biz.Model.User
 {
-    public class Edit :ProcessUploadedFile
-    {
-        public int Id { set; get; }
-        public string Fullname { set; get; }      
+    public class CreateUserInfoRequest
+    {   
+        public int ID { set; get; } 
+        public string FullName { set; get; }
         public int IdentifierCode { set; get; }
-        public string Address { set; get; }   
+        public string Address { set; get; }
         public string Gender { set; get; }
         public int Age { set; get; }
         public DateTime? DateOfBirth { set; get; }
-      
+        public DateTime RegistrationDate { set; get; } = DateTime.Now;
     }
 }

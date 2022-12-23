@@ -14,6 +14,6 @@ namespace CoWorking.Biz.Model.Bookings
         public DateTime? StartTime { set; get; }
         public DateTime? EndTime { set; get; }
         public double Total { set; get; }
-        public DateTime? CreatedDate { set; get; }
+        public DateTime CreatedDate { set; get; }
     }
 }

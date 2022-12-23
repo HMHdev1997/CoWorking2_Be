@@ -74,7 +74,7 @@ namespace CoWorking.Data.Access.Data.Migrations.MsSql
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     PhoneNumbers = table.Column<int>(type: "int", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
@@ -95,7 +95,6 @@ namespace CoWorking.Data.Access.Data.Migrations.MsSql
                     Address = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     GenenalDecription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     Detail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Device = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Tags = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HotFlag = table.Column<bool>(type: "bit", nullable: true),
                     ViewCount = table.Column<int>(type: "int", nullable: true),

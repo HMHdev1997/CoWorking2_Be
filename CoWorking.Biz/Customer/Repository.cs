@@ -56,6 +56,15 @@ namespace CoWorking.Biz.Customer
             return _mapper.Map<Data.Model.Customer, View>(item);
         }
 
+        public async Task<View> Update(Edit model)
+        {
+            var oldCustomer = await _context.Customers.FindAsync(model.Id);
+            var item = _mapper.Map(model, oldCustomer );
+            _context.Customers.Update(item);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<Data.Model.Customer, Model.Customers.View>(item);
+        }
+
         private string ProcessUploadedFile(New model)
         {
             string uniqueFileName = null;
@@ -73,5 +82,7 @@ namespace CoWorking.Biz.Customer
 
             return uniqueFileName;
         }
+
+     
     }
 }

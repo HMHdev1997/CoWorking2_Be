@@ -36,5 +36,48 @@ namespace CoWorking.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("paging")]
+        public async Task<IActionResult> GetPageOffice([FromQuery] GetPublicProductRequest model)
+        {
+            try
+            {
+                var item = await _repository.Office.GetAllPaging(model);
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"Get Office Error");
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete ([FromForm]int id)
+        {
+            try
+            {
+                await _repository.Office.Delete(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"Delete Office Error");
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPut]
+        public async Task<IActionResult> Update([FromForm] OfficeUpdateRequest model)
+        {
+            try
+            {
+                var item = await _repository.Office.UpdateOffice(model);
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"Update Office Error");
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

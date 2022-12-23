@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 namespace CoWorking.Biz.Model.Offices
 {
     public class OfficeCreateRequest
-    {
-    
-  
+    {   
         public int AreaId { set; get; }
         public string NameOffice { set; get; }
         public string Address { set; get; }

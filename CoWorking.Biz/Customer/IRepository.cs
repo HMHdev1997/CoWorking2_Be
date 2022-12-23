@@ -11,6 +11,8 @@ namespace CoWorking.Biz.Customer
     {
         Task<Model.Customers.View> GetById(int id);
         Task<Model.Customers.View> CreateAync(Model.Customers.New model);
+        Task<Model.Customers.View> Update(Model.Customers.Edit model);
+        
         Task DeleteAync(int id);
     }
 }

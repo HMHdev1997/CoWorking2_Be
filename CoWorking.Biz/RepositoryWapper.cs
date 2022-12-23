@@ -52,5 +52,8 @@ namespace CoWorking.Biz
 
         private OfficeImage.IRepository _officeImage;
         public OfficeImage.IRepository OfficeImage => _officeImage ??= new OfficeImage.Repository(_context, _mapper, _enviromemt);
+
+        private Booking.IRepository _booking;
+        public Booking.IRepository Booking => _booking ??=new Booking.Repository(_context, _mapper);
     }
 }

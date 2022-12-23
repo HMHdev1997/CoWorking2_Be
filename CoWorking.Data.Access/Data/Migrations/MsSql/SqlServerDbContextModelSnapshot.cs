@@ -312,9 +312,6 @@ namespace CoWorking.Data.Access.Data.Migrations.MsSql
                     b.Property<string>("Detail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Device")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("Discount")
                         .HasColumnType("decimal(18,2)");
 

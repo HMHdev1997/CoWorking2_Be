@@ -50,7 +50,20 @@ namespace CoWorking.Api.Controllers
             }
         }
         
-
+        [HttpPut]
+        public async Task<IActionResult> Update([FromForm] Edit model)
+        {
+            try
+            {
+                var item = await _repository.Customer.Update(model);
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"Get Customer Error");
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteAync([FromForm]int id)

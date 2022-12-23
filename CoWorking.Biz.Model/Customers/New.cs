@@ -12,6 +12,6 @@ namespace CoWorking.Biz.Model.Customers
         public string Gender { set; get; }
         public int Age { set; get; }
         public DateTime? DateOfBirth { set; get; }
-        public DateTime? RegistrationDate { set; get; }
+        public DateTime RegistrationDate { set; get; } = DateTime.Now;
     }
 }

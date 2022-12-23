@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoWorking.Data.Access.Data.Migrations.MsSql
 {
     [DbContext(typeof(SqlServerDbContext))]
-    [Migration("20221213082001_InitialDbMssql")]
+    [Migration("20221221190247_InitialDbMssql")]
     partial class InitialDbMssql
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -314,9 +314,6 @@ namespace CoWorking.Data.Access.Data.Migrations.MsSql
                     b.Property<string>("Detail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Device")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("Discount")
                         .HasColumnType("decimal(18,2)");
 
@@ -549,6 +546,7 @@ namespace CoWorking.Data.Access.Data.Migrations.MsSql
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 

@@ -31,8 +31,8 @@ namespace CoWorking.Data.Model
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}")]
         public DateTime? DateOfBirth { set; get; }
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}")]
-        public DateTime? RegistrationDate { set; get; }
-        public virtual User User { set; get; }
+        public DateTime? RegistrationDate { set; get; } = DateTime.Now;
+        public virtual User User { set; get; } 
 
         
      
