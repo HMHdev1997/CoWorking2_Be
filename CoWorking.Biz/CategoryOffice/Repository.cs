@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CoWorking.Biz.Model.CategoryOffice;
 using CoWorking.Data.Access;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,13 @@ namespace CoWorking.Biz.CategoryOffice
             return _mapper.Map<Data.Model.CategoryOffice, Model.CategoryOffice.View>(CategoryItem);
         }
 
+        public async Task<List<CategoryOfficeView>> GetAll()
+        {
+            var CategoryItem = await _context.CategoryOffices.Include(x => x.OfficeInCategories).ToListAsync();
+            return _mapper.Map<List<Data.Model.CategoryOffice>, List<CategoryOfficeView>>(CategoryItem);
+           
+        }
+
         public async Task<View> Update(Edit model)
         {
             var oldCategoryOffice = await _context.CategoryOffices.FindAsync(model.ID);
@@ -37,5 +45,7 @@ namespace CoWorking.Biz.CategoryOffice
             await _context.SaveChangesAsync();
             return _mapper.Map<Data.Model.CategoryOffice, View>(newCategoryOffice);
         }
+
+
     }
 }

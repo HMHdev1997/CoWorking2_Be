@@ -51,6 +51,20 @@ namespace CoWorking.Api.Controllers
             }
 
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAll ()
+        {
+            try
+            {
+                var item = await _repository.CategoryOffice.GetAll();
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"Update Category Office Error");
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

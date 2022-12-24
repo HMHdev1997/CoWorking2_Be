@@ -74,6 +74,7 @@ namespace CoWorking.Biz.Office
                 ModifiedDate = request.ModifiedDate,
                 ModifiedBy = request.ModifiedBy,
             };
+         
             if (request.ThumbnailImage != null)
             {
                 newOffice.OfficeImages = new List<Data.Model.OfficeImage>()
@@ -86,6 +87,7 @@ namespace CoWorking.Biz.Office
                     }
                 };
             }
+          
             await _context.Offices.AddRangeAsync(newOffice);
             await _context.SaveChangesAsync();
             return _mapper.Map<Data.Model.Office, Model.Offices.View>(newOffice);
@@ -162,7 +164,7 @@ namespace CoWorking.Biz.Office
             if (Office == null)
             {
                 throw new CoException($"Cannot find a Office: {request}");
-            }          
+            }
             Office.ID = request.ID;
             Office.NameOffice = request.NameOffice;
             Office.AreaId = request.AreaId;
@@ -176,10 +178,10 @@ namespace CoWorking.Biz.Office
             Office.Latitude = request.Latitude;
             Office.Longitude = request.Longitude;
             if (request.ThumbnailImage != null)
-            
+
             {
                 var thumbnailImage = await _context.OfficeImages.FirstOrDefaultAsync(x => x.OfficeId == request.ID);
-                if(thumbnailImage != null)
+                if (thumbnailImage != null)
                 {
                     thumbnailImage.PartImage = await this.SaveFile(request.ThumbnailImage);
                     thumbnailImage.FileSize = request.ThumbnailImage.Length;
@@ -188,6 +190,11 @@ namespace CoWorking.Biz.Office
             }
             await _context.SaveChangesAsync();
             return _mapper.Map<Data.Model.Office, View>(Office);
+        }
+
+        public Task<PageResult<OfficeView>> GetByCategory(GetPublicProductRequest request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

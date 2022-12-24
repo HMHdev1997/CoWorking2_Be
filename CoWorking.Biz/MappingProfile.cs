@@ -12,16 +12,22 @@ namespace CoWorking.Biz
     {
         public MappingProfile()
         {
+            #region Area
             CreateMap<Data.Model.Area, Model.Area.New>().ReverseMap();
             CreateMap<Data.Model.Area, Model.Area.View>().ReverseMap();
             CreateMap<Data.Model.Area, Model.Area.Edit>().ReverseMap();
+            #endregion
 
+            #region Customer
             CreateMap<Data.Model.Customer, Model.Customers.Edit>().ReverseMap();
             CreateMap<Data.Model.Customer, Model.Customers.View>().ReverseMap();
+            #endregion
 
             CreateMap<Data.Model.CategoryOffice, Model.CategoryOffice.New>().ReverseMap();
             CreateMap<Data.Model.CategoryOffice, Model.CategoryOffice.View>().ReverseMap();
             CreateMap<Data.Model.CategoryOffice, Model.CategoryOffice.Edit>().ReverseMap();
+            CreateMap<Data.Model.CategoryOffice, Model.CategoryOffice.Filter>().ReverseMap();
+            CreateMap<Data.Model.CategoryOffice, Model.CategoryOffice.CategoryOfficeView>().ReverseMap();
 
             CreateMap<Data.Model.CategoryService, Model.CategoryService.Edit>().ReverseMap();
             CreateMap<Data.Model.CategoryService, Model.CategoryService.New>().ReverseMap();
@@ -61,6 +67,11 @@ namespace CoWorking.Biz
 
             CreateMap<Data.Model.Booking, Model.Bookings.New>().ReverseMap();
             CreateMap<Data.Model.Booking, Model.Bookings.View>().ReverseMap();
+
+            #region OfficeInCategory
+            CreateMap<Data.Model.OfficeInCategory, Model.OfficeInCategory.New>().ReverseMap();
+            CreateMap<Data.Model.OfficeInCategory, Model.OfficeInCategory.View>().ReverseMap();
+            #endregion
 
         }
     }

@@ -32,12 +32,7 @@ namespace CoWorking.Biz.User
             return _mapper.Map<Data.Model.User, View>(item);
         }
 
-        public Task<ViewUserCustomer> CreateUserInfo(CreateUserInfoRequest model)
-        {
-             
-            return null;
-            
-        }
+    
 
         public async Task<int> DeleteAync(int id)
         {
@@ -75,7 +70,7 @@ namespace CoWorking.Biz.User
             {
                 throw new Model.CoException($"Cannot find a User: {id} ");
             }
-            return  user;
+            return  _mapper.Map<ViewUserCustomer>(user);
         }
 
         public async Task<ViewUserCustomer> GetUser(string email, string password, int phoneNumber)

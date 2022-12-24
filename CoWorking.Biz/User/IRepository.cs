@@ -11,7 +11,7 @@ namespace CoWorking.Biz.User
         Task<Model.User.ViewUserCustomer> GetById(int id);
         Task<Model.User.ViewUserCustomer> GetUser(string email, string password, int phoneNumber);        
         Task<Model.User.View> CreateAync(Model.User.New model);
-        Task<Model.User.ViewUserCustomer> CreateUserInfo(Model.User.CreateUserInfoRequest model);
+
          Task<int> DeleteAync(int id);
     }
 }

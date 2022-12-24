@@ -9,7 +9,7 @@ namespace CoWorking.Biz.CategoryOffice
     public interface IRepository
     {
         Task<Model.CategoryOffice.View> CreateAync(Model.CategoryOffice.New model);
-        
+        Task<List<Model.CategoryOffice.CategoryOfficeView>> GetAll();
         Task<Model.CategoryOffice.View> Update(Model.CategoryOffice.Edit model);
             
 

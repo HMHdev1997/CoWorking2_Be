@@ -55,5 +55,8 @@ namespace CoWorking.Biz
 
         private Booking.IRepository _booking;
         public Booking.IRepository Booking => _booking ??=new Booking.Repository(_context, _mapper);
+
+        private OfficeInCategory.IRepository _officeInCategory;
+        public OfficeInCategory.IRepository OfficeInCategory => _officeInCategory ??= new OfficeInCategory.Repository(_context,_mapper);
     }
 }
