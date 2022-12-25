@@ -19,7 +19,7 @@ namespace CoWorking.Biz
             #endregion
 
             #region Customer
-            CreateMap<Data.Model.Customer, Model.Customers.Edit>().ReverseMap();
+            //CreateMap<Data.Model.Customer, Model.Customers.Edit>().ReverseMap();
             CreateMap<Data.Model.Customer, Model.Customers.View>().ReverseMap();
             #endregion
 
@@ -42,9 +42,11 @@ namespace CoWorking.Biz
 
             CreateMap<Data.Model.FeedBack, Model.FeedBack.New>().ReverseMap();
             CreateMap<Data.Model.FeedBack, Model.FeedBack.View>().ReverseMap();
-     
-  
+
+            #region Office
+            CreateMap<Data.Model.Office, Model.Offices.Filer>().ReverseMap();
             CreateMap<Data.Model.Office, Model.Offices.View>().ReverseMap();
+            #endregion
 
             CreateMap<Data.Model.OfficeImage, Model.OfficeImages.View>().ReverseMap();
             CreateMap<Data.Model.OfficeImage, Model.OfficeImages.New>().ReverseMap();

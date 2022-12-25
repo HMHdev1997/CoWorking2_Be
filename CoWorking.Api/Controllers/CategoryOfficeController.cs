@@ -51,7 +51,7 @@ namespace CoWorking.Api.Controllers
             }
 
         }
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<IActionResult> GetAll ()
         {
             try
@@ -61,7 +61,22 @@ namespace CoWorking.Api.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogInformation(ex, $"Update Category Office Error");
+                _logger.LogInformation(ex, $"Get Category Office Error");
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetByName (int id)
+        {
+            try
+            {
+                var item = await _repository.CategoryOffice.GetById(id);
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"Get Category Office Error");
                 return BadRequest(ex.Message);
             }
         }

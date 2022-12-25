@@ -1,11 +1,15 @@
 ﻿using AutoMapper;
+using CoWorking.Biz.Common;
 using CoWorking.Biz.Model.OfficeImages;
 using CoWorking.Data.Access;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,47 +20,47 @@ namespace CoWorking.Biz.OfficeImage
         private readonly DomainDbContext _context;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _enviromemt;
+        private readonly IStorageService _storageService;
+        private const string USER_CONTENT_FOLDER_NAME = "Image";
 
 
-        public Repository(DomainDbContext context, IMapper mapper, IWebHostEnvironment enviromemt)
+        public Repository(DomainDbContext context, IMapper mapper, IWebHostEnvironment enviromemt, IStorageService storageService)
         {
             _context = context;
             _mapper = mapper;
             _enviromemt = enviromemt;
+            _storageService = storageService;
 
     }
 
         public async Task<View> CreateAsync(New model)
         {
-            string uniqueFileName = ProcessUploadedFile(model);
+          
             var OfficeImage = new Data.Model.OfficeImage
             {
                 OfficeId = model.OfficeId,
-                PartImage = uniqueFileName,
+                PartImage = await this.SaveFile(model.ImagePart),
                 Caption = model.Caption,
-                FileSize = model.FileSize,
+                FileSize = model.ImagePart.Length,
 
             };
             await _context.OfficeImages.AddAsync(OfficeImage);
             await _context.SaveChangesAsync();
             return _mapper.Map<Data.Model.OfficeImage, View>(OfficeImage);
         }
-        private string ProcessUploadedFile(New model)
+      
+        private async Task<string> SaveFile(IFormFile file)
         {
-            string uniqueFileName = null;
+            var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
+            await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
+            return "/" + USER_CONTENT_FOLDER_NAME + "/" + fileName;
+        }
 
-            if (model.ImagePart != null)
-            {
-                string uploadsFolder = Path.Combine(_enviromemt.WebRootPath, "Images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ImagePart.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    model.ImagePart.CopyTo(fileStream);
-                }
-            }
-
-            return uniqueFileName;
+        public async Task<View> GetById(int id)
+        {
+            var item = await _context.OfficeImages.FirstOrDefaultAsync(x => x.ID == id);
+            return _mapper.Map<Data.Model.OfficeImage, Model.OfficeImages.View>(item);
         }
     }
 }

@@ -21,9 +21,9 @@ namespace CoWorking.Biz.Office
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _enviromemt;
         private readonly IStorageService _storageService;
-        private const string USER_CONTENT_FOLDER_NAME = "user-content";
+        private const string USER_CONTENT_FOLDER_NAME = "Image";
 
-        //private const string USER_CONTENT_FOLDER_NAME = "user-content";
+      
         public Repository(DomainDbContext context, IMapper mapper, IWebHostEnvironment environment, IStorageService storageService)
         {
             _context = context;
@@ -74,7 +74,7 @@ namespace CoWorking.Biz.Office
                 ModifiedDate = request.ModifiedDate,
                 ModifiedBy = request.ModifiedBy,
             };
-         
+
             if (request.ThumbnailImage != null)
             {
                 newOffice.OfficeImages = new List<Data.Model.OfficeImage>()
@@ -87,15 +87,31 @@ namespace CoWorking.Biz.Office
                     }
                 };
             }
-          
+
             await _context.Offices.AddRangeAsync(newOffice);
             await _context.SaveChangesAsync();
             return _mapper.Map<Data.Model.Office, Model.Offices.View>(newOffice);
         }
 
-        public Task<View> GetById(int id)
+        public async Task<OfficeView> GetById(int id)
         {
-            throw new NotImplementedException();
+            var query =await (from o in _context.Offices
+                               join pic in _context.OfficeImages on o.ID equals pic.OfficeId
+                               where o.ID == id && pic.OfficeId == id
+                               select new OfficeView()
+                               {
+                                   ID = o.ID,
+                                   AreaId = o.AreaId,
+                                   NameOffice = o.NameOffice,
+                                   GenenalDecription = o.GenenalDecription,
+                                   Detail = o.Detail,
+                                   Tags = o.Tags,
+                                   Discount = o.Discount,
+                                   HotFlag = o.HotFlag,
+                                   ViewCount = o.ViewCount,
+                                   ThumbnailImage = pic.PartImage,
+                               }).FirstOrDefaultAsync();
+            return _mapper.Map<OfficeView>(query);
         }
 
         private async Task<string> SaveFile(IFormFile file)
@@ -192,9 +208,12 @@ namespace CoWorking.Biz.Office
             return _mapper.Map<Data.Model.Office, View>(Office);
         }
 
-        public Task<PageResult<OfficeView>> GetByCategory(GetPublicProductRequest request)
+        public async Task<List<Filer>> SearchOffice(string key)
         {
-            throw new NotImplementedException();
+            var item = await _context.Offices.Include(x => x.OfficeImages)
+                                             .Include(x=>x.Spaces)
+                                             .Where(x => x.NameOffice.Contains(key)).ToListAsync();
+            return _mapper.Map<List<Filer>> (item);
         }
     }
 }

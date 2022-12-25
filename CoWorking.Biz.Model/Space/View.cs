@@ -8,5 +8,6 @@ namespace CoWorking.Biz.Model.Space
 {
     public class View
     {
+
     }
 }

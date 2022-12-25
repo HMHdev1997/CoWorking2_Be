@@ -73,41 +73,20 @@ namespace CoWorking.Biz.User
             return  _mapper.Map<ViewUserCustomer>(user);
         }
 
-        public async Task<ViewUserCustomer> GetUser(string email, string password, int phoneNumber)
+        public async Task<View> GetUser(string email, string password, int phoneNumber)
         {   
 
-            var user = await (from a in _context.Users
-                               join b in _context.Customers
-                               on a.Id equals b.UserId
-                               where a.Email == email || a.PhoneNumbers == phoneNumber
-                               select new ViewUserCustomer
-                               {
-                                   Name = a.Name,
-                                   Email = a.Email,
-                                   PhoneNumbers = a.PhoneNumbers,
-                                   FullName = b.FullName,
-                                   Address = b.Address,
-                                   IdentifierCode = b.IdentifierCode,
-                                   ImagePart = b.ImagePart,
-                                   Point = b.Point,
-                                   Age = b.Age,
-                                   Gender = b.Gender,
-                                   DateOfBirth = b.DateOfBirth
-                               }).FirstOrDefaultAsync();
+            var user = await _context.Users.FirstOrDefaultAsync(x=>x.Email == email || x.PhoneNumbers ==phoneNumber);
             if (user == null)
             {
-                throw new Model.CoException($"Tài khoản không tồn tại ");
+                throw new Model.CoException($"Cannot find a User ");
             }
-            var passwordLogin = await _context.Users.FirstOrDefaultAsync(x => x.Password == password);                   
-                if (passwordLogin != null)
-                {
-                    return user;
-                }
-                else
-                {
-                    throw new Model.CoException($"Sai mật khẩu "); ;
-                }
-            
+            if(user.Password != password)
+            {
+                throw new Model.CoException($"Sai mật khẩu ");
+            }
+            return _mapper.Map<Data.Model.User, View>(user);
+
         }
 
         

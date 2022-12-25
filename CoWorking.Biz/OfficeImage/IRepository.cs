@@ -9,5 +9,6 @@ namespace CoWorking.Biz.OfficeImage
     public interface IRepository
     {
         Task<Model.OfficeImages.View> CreateAsync(Model.OfficeImages.New model);
+        Task<Model.OfficeImages.View> GetById(int id);
     }
 }

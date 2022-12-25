@@ -1,5 +1,6 @@
 ﻿using CoWorking.Biz;
 using CoWorking.Biz.Model.Customers;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -51,11 +52,11 @@ namespace CoWorking.Api.Controllers
         }
         
         [HttpPut]
-        public async Task<IActionResult> Update([FromForm] Edit model)
+        public async Task<IActionResult> Update([FromForm]Edit model)
         {
             try
             {
-                var item = await _repository.Customer.Update(model);
+                var item = await _repository.Customer.Update( model);
                 return Ok(item);
             }
             catch (Exception ex)

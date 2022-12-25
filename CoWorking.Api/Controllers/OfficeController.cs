@@ -50,6 +50,35 @@ namespace CoWorking.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("Id")]
+        public async Task<IActionResult> GetbyId([FromQuery] int id)
+        {
+            try
+            {
+                var item = await _repository.Office.GetById(id);
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"Get Office Error: {id}");
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("Search")]
+        public async Task<IActionResult> Search(string key)
+        {
+            try
+            {
+                var item = await _repository.Office.SearchOffice(key);
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"Get Office Error: {key}");
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         [HttpDelete]
         public async Task<IActionResult> Delete ([FromForm]int id)

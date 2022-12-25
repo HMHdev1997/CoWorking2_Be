@@ -12,7 +12,7 @@ namespace CoWorking.Data.Model
         public int ID { set; get; }
         [ForeignKey("UserId")]
         public int UserId { set; get; }
-        [Required]
+        
         [MaxLength(256)]
         public string FullName { set; get; }
         public string ImagePart { set; get; }

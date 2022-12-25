@@ -10,6 +10,7 @@ namespace CoWorking.Biz.CategoryOffice
     {
         Task<Model.CategoryOffice.View> CreateAync(Model.CategoryOffice.New model);
         Task<List<Model.CategoryOffice.CategoryOfficeView>> GetAll();
+        Task<Model.CategoryOffice.CategoryOfficeView> GetById(int id);
         Task<Model.CategoryOffice.View> Update(Model.CategoryOffice.Edit model);
             
 

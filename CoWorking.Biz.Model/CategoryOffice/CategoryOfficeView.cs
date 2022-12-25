@@ -8,10 +8,11 @@ namespace CoWorking.Biz.Model.CategoryOffice
 {
     public class CategoryOfficeView
     {
+        public int ID { set; get; }
         public string Name { set; get; }
         public string Decription { set; get; }
-        public virtual List<Model.OfficeInCategory.View> OfficeInCategory { set; get; }
-
+        public virtual List<OfficeInCategory.View> OfficeInCategory { set; get;} = new List<OfficeInCategory.View>();         
 
     }
+
 }
