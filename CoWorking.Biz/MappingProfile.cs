@@ -46,6 +46,8 @@ namespace CoWorking.Biz
             #region Office
             CreateMap<Data.Model.Office, Model.Offices.Filer>().ReverseMap();
             CreateMap<Data.Model.Office, Model.Offices.View>().ReverseMap();
+            CreateMap<Data.Model.Office, Model.Offices.OfficeView>().ReverseMap();
+
             #endregion
 
             CreateMap<Data.Model.OfficeImage, Model.OfficeImages.View>().ReverseMap();
