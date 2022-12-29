@@ -92,25 +92,11 @@ namespace CoWorking.Biz.Office
             return _mapper.Map<Data.Model.Office, Model.Offices.View>(newOffice);
         }
 
-        public async Task<OfficeView> GetById(int id)
+        public async Task<View> GetById(int id)
         {
-            var query =await (from o in _context.Offices
-                               join pic in _context.OfficeImages on o.ID equals pic.OfficeId
-                               where o.ID == id && pic.OfficeId == id
-                               select new OfficeView()
-                               {
-                                   ID = o.ID,
-                                   AreaId = o.AreaId,
-                                   NameOffice = o.NameOffice,
-                                   GenenalDecription = o.GenenalDecription,
-                                   Detail = o.Detail,
-                                   Tags = o.Tags,
-                                   Discount = o.Discount,
-                                   HotFlag = o.HotFlag,
-                                   ViewCount = o.ViewCount,
-                                   ThumbnailImage = pic.PartImage,
-                               }).FirstOrDefaultAsync();
-            return _mapper.Map<OfficeView>(query);
+     
+            var query = await _context.Offices.Include(x => x.OfficeImages).FirstOrDefaultAsync(x => x.ID == id);
+            return _mapper.Map<View>(query);
         }
 
         private async Task<string> SaveFile(IFormFile file)
@@ -121,7 +107,7 @@ namespace CoWorking.Biz.Office
             return "/" + USER_CONTENT_FOLDER_NAME + "/" + fileName;
         }
 
-        public async Task<PageResult<OfficeView>> GetAllPaging(GetPublicProductRequest request)
+        public async Task<PageResult<List>> GetAllPaging(GetPublicProductRequest request)
         {
             var query = (from p in _context.Offices
                          join pic in _context.OfficeImages on p.ID equals pic.OfficeId
@@ -133,10 +119,9 @@ namespace CoWorking.Biz.Office
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                             .Take(request.PageSize)
-                            .Select(x => new OfficeView()
+                            .Select(x => new List()
                             {
-                                ID = x.p.ID,
-                                AreaId = x.p.AreaId,
+                                ID = x.p.ID,                            
                                 NameOffice = x.p.NameOffice,
                                 GenenalDecription = x.p.GenenalDecription,
                                 Detail = x.p.Detail,
@@ -146,7 +131,7 @@ namespace CoWorking.Biz.Office
                                 ViewCount = x.p.ViewCount,
                                 ThumbnailImage = x.pic.PartImage,
                             }).ToListAsync();
-            var pagedResult = new Model.PageResult<OfficeView>()
+            var pagedResult = new Model.PageResult<List>()
             {
                 TotalRecords = totalRow,
                 PageSize = request.PageSize,

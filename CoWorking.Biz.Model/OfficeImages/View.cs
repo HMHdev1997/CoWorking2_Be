@@ -13,6 +13,6 @@ namespace CoWorking.Biz.Model.OfficeImages
         public string PartImage { set; get; }
         public string Caption { set; get; }
         public long FileSize { set; get; }
-        public virtual Model.Offices.OfficeView Office { set; get; } 
+      
     }
 }

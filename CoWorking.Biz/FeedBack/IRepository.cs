@@ -8,5 +8,8 @@ namespace CoWorking.Biz.FeedBack
 {
     public interface IRepository
     {
+        Task<Model.FeedBack.View> CreateAsync(Model.FeedBack.New request);
+        Task<Model.FeedBack.View> Update(Model.FeedBack.Edit request);
+        Task Delete(int id);
     }
 }

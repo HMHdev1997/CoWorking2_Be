@@ -65,6 +65,7 @@ namespace CoWorking.Biz
         private FeedBack.IRepository _feedBack;
         public FeedBack.IRepository FeedBack => _feedBack ??= new FeedBack.Repository(_context, _mapper);
 
-        
+        private Staff.IRepository _staff;
+        public Staff.IRepository Staff => _staff ??= new Staff.Repository(_context,_mapper);
     }
 }

@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace CoWorking.Biz.Model.Offices
 {
-    public class OfficeView
+    public class List
+
     {   
         public int ID { set; get; }
         public string NameOffice { set; get; }
-        public int AreaId { set; get; }
+
         public int OfficeInCategoryId { set; get; }
         public string Address { set; get; }
         public string GenenalDecription { set; get; }

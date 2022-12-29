@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoWorking.Biz.Model.Staff
 {
-    public class NEw
+    public class New
     {
         public string Account { set; get; }
         public string Name { set; get; }

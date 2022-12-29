@@ -20,6 +20,7 @@ namespace CoWorking.Biz
         OfficeInCategory.IRepository OfficeInCategory { get; }
         Role.IRepository Role { get; }
         FeedBack.IRepository FeedBack { get; }
+        Staff.IRepository Staff { get; }
 
     }
 }

@@ -46,7 +46,7 @@ namespace CoWorking.Biz
             #region Office
             CreateMap<Data.Model.Office, Model.Offices.Filer>().ReverseMap();
             CreateMap<Data.Model.Office, Model.Offices.View>().ReverseMap();
-            CreateMap<Data.Model.Office, Model.Offices.OfficeView>().ReverseMap();
+            CreateMap<Data.Model.Office, Model.Offices.List>().ReverseMap();
 
             #endregion
 
@@ -85,6 +85,11 @@ namespace CoWorking.Biz
             #region FeedBack
             CreateMap<Data.Model.FeedBack, Model.FeedBack.New>().ReverseMap();
             CreateMap<Data.Model.FeedBack, Model.FeedBack.View>().ReverseMap();
+            #endregion
+
+            #region Staff
+            CreateMap<Data.Model.Staff, Model.Staff.View>().ReverseMap();
+            CreateMap<Data.Model.Staff, Model.Staff.New>().ReverseMap();
             #endregion
 
         }
