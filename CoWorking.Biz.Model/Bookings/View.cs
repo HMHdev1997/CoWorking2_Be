@@ -15,5 +15,6 @@ namespace CoWorking.Biz.Model.Bookings
         public DateTime? EndTime { set; get; }
         public double Total { set; get; }
         public DateTime? CreatedDate { set; get; }
+        public virtual List<Model.BookingDetail.View> BookingDetail { set; get; } = new List<BookingDetail.View>();
     }
 }

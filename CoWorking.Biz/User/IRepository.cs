@@ -12,6 +12,7 @@ namespace CoWorking.Biz.User
         Task<Model.User.View> GetUser(string email, string password, int phoneNumber);        
         Task<Model.User.View> CreateAync(Model.User.New model);
 
-         Task<int> DeleteAync(int id);
+        Task<Model.User.View> GetUserInfo(int CutomerId);
+        Task<int> DeleteAync(int id);
     }
 }

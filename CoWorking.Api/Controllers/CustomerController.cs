@@ -37,11 +37,11 @@ namespace CoWorking.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCustomer(int id)
+        public async Task<IActionResult> GetCustomer(int UserId)
         {
             try
             {
-                var customer = await _repository.Customer.GetById(id);
+                var customer = await _repository.Customer.GetById(UserId);
                 return Ok(customer);
             }
             catch (Exception ex)

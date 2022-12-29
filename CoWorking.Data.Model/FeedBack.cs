@@ -20,7 +20,8 @@ namespace CoWorking.Data.Model
         public int OfficeId { set; get; }
         [StringLength(500)]
         public string Message { set; get; }
-        public int Votes { set; get; }      
+        public int Votes { set; get; }
+        public DateTime CreateDate { set; get; } = DateTime.Now;
         public virtual User User { set; get; }
         public virtual Office Office { set; get; }
     }

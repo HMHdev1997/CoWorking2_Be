@@ -13,5 +13,6 @@ namespace CoWorking.Biz.Model.FeedBack
         public int OfficeId { set; get; }
         public string Message { set; get; }
         public int Votes { set; get; }
+        public DateTime CreateDate { set; get; } = DateTime.Now;
     }
 }

@@ -58,5 +58,13 @@ namespace CoWorking.Biz
 
         private OfficeInCategory.IRepository _officeInCategory;
         public OfficeInCategory.IRepository OfficeInCategory => _officeInCategory ??= new OfficeInCategory.Repository(_context,_mapper);
+
+        private Role.IRepository _role;
+        public Role.IRepository Role => _role ??= new Role.Repository(_context, _mapper);
+
+        private FeedBack.IRepository _feedBack;
+        public FeedBack.IRepository FeedBack => _feedBack ??= new FeedBack.Repository(_context, _mapper);
+
+        
     }
 }

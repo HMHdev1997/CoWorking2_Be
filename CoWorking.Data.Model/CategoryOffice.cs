@@ -17,7 +17,7 @@ namespace CoWorking.Data.Model
         public string Name { set; get; }
         [StringLength(256)]
         public string Decription { set; get; }
-        public DateTime? CreateDate { set; get; }
+        public DateTime CreateDate { set; get; } = DateTime.Now;
         public string CreateBy { set; get; }
 
         public virtual List<OfficeInCategory> OfficeInCategories { set; get; }

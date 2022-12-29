@@ -30,7 +30,7 @@ namespace CoWorking.Data.Model
         public decimal Discount { set; get; }
         public long Latitude { set; get; }
         public long Longitude { set; get; }
-        public DateTime? CreateDate { set; get; }
+        public DateTime? CreateDate { set; get; } = DateTime.Now;
         public string CreateBy { set; get; }
         public DateTime? ModifiedDate { set; get; }
         public string ModifiedBy { set; get; }

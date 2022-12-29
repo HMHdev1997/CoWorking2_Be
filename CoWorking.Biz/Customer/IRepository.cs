@@ -10,7 +10,7 @@ namespace CoWorking.Biz.Customer
 {
     public interface IRepository
     {
-        Task<Model.Customers.View> GetById(int id);
+        Task<Model.Customers.View> GetById(int UserId);
         Task<Model.Customers.View> CreateAync(Model.Customers.New model);
         Task<Model.Customers.View> Update(Model.Customers.Edit model);
         

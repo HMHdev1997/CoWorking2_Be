@@ -18,10 +18,12 @@ namespace CoWorking.Data.Model
         public int UserId { set; get; }
         [ForeignKey("OfficeId")]
         public int OfficeId { set; get; }
-        public DateTime? StartTime { set; get; }
-        public DateTime? EndTime { set; get; }
+        [DisplayFormat(DataFormatString = "{dd-MM-yyyy}")]
+        public DateTime StartTime { set; get; }
+        [DisplayFormat(DataFormatString = "{dd-MM-yyyy}")]
+        public DateTime EndTime { set; get; }
         public double Total { set; get; }
-        public DateTime CreatedDate { set; get; }
+        public DateTime CreateDate { set; get; } = DateTime.Now;
         public virtual User User { set; get; }
         public virtual Office Office { set; get; }      
         public virtual List<CategorySpace> Spaces { set; get; }

@@ -89,6 +89,9 @@ namespace CoWorking.Biz.User
 
         }
 
-        
+        public Task<View> GetUserInfo(int CutomerId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

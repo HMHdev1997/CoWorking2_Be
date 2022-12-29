@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 
 namespace CoWorking.Biz.Model.Customers
 {
-    public class New : ProcessUploadedFile
+    public class New
     {
   
         public int UserId { set; get; }
@@ -11,7 +12,8 @@ namespace CoWorking.Biz.Model.Customers
         public string Address { set; get; }
         public string Gender { set; get; }
         public int Age { set; get; }
+        public IFormFile ImagePart { set; get; }
         public DateTime? DateOfBirth { set; get; }
-        public DateTime RegistrationDate { set; get; } = DateTime.Now;
+      
     }
 }

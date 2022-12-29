@@ -75,6 +75,16 @@ namespace CoWorking.Biz
             CreateMap<Data.Model.OfficeInCategory, Model.OfficeInCategory.View>().ReverseMap();
             #endregion
 
+            #region Role
+            CreateMap<Data.Model.Role, Model.Role.View>().ReverseMap();
+            CreateMap<Data.Model.Role, Model.Role.New>().ReverseMap();
+            #endregion
+
+            #region FeedBack
+            CreateMap<Data.Model.FeedBack, Model.FeedBack.New>().ReverseMap();
+            CreateMap<Data.Model.FeedBack, Model.FeedBack.View>().ReverseMap();
+            #endregion
+
         }
     }
 }

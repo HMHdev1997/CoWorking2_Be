@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CoWorking.Biz.Model.Bookings;
 using CoWorking.Data.Access;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,13 @@ namespace CoWorking.Biz.Booking
             await _context.Bookings.AddAsync(Booking);
             await _context.SaveChangesAsync();
             return _mapper.Map<Data.Model.Booking, View>(Booking);
+        }
+
+        public async Task<View> GetById(int id)
+        {
+            var Booking = await _context.Bookings.Include(x => x.BookingDetails).FirstOrDefaultAsync(x => x.ID == id);
+            return _mapper.Map<View>(Booking);
+
         }
     }
 }

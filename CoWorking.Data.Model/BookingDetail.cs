@@ -19,10 +19,12 @@ namespace CoWorking.Data.Model
         public int Number { set; get; }
         public double Price { set; get; }
         public string Note { set; get; }
-        public DateTime? StartTime { set; get; }
-        public DateTime? EndTime { set; get; }
+        [DisplayFormat(DataFormatString = "{dd-MM-yyyy}")]
+        public DateTime StartTime { set; get; }
+        [DisplayFormat(DataFormatString = "{dd-MM-yyyy}")]
+        public DateTime EndTime { set; get; }
         public int PaymentStatus { set; get; }
-        public DateTime? CreaetDate { set; get; }
+        public DateTime CreateDate { set; get; } = DateTime.Now;
         public string CreateBy { set; get; }
         public virtual Booking Booking { set; get; }
     }
