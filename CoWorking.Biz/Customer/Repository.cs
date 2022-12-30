@@ -10,6 +10,7 @@ using System;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Diagnostics; 
 
 namespace CoWorking.Biz.Customer
 {
@@ -38,11 +39,11 @@ namespace CoWorking.Biz.Customer
                 IdentifierCode = model.IdentifierCode,
                 Address = model.Address,
                 Gender = model.Gender,
-                Age = model.Age,                              
+                Age = model.Age,
             };
             if (model.ImagePart != null)
             {
-                  await this.SaveFile(model.ImagePart);
+                await this.SaveFile(model.ImagePart);
             }
 
             await _context.Customers.AddAsync(user);
@@ -65,7 +66,28 @@ namespace CoWorking.Biz.Customer
 
         public async Task<View> Update(Edit model)
         {
-            var Customer = await _context.Customers.AsNoTracking().FirstOrDefaultAsync(x=>x.ID == model.Id);
+            Debug.WriteLine(model.Id);
+            var Customer = await _context.Customers.AsNoTracking().FirstOrDefaultAsync(q => q.UserId == model.Id);
+            if (Customer == null)
+            {
+                var user = new Data.Model.Customer()
+                {
+                    UserId = model.Id,
+                    FullName = model.Fullname,
+                    IdentifierCode = model.IdentifierCode,
+                    Address = model.Address,
+                    Gender = model.Gender,
+                    Age = model.Age,
+                };
+                if (model.ImagePart != null)
+                {
+                    await this.SaveFile(model.ImagePart);
+                }
+
+                await _context.Customers.AddAsync(user);
+                await _context.SaveChangesAsync();
+                return _mapper.Map<Data.Model.Customer, View>(user);
+            }
             Customer.FullName = model.Fullname;
             Customer.IdentifierCode = model.IdentifierCode;
             Customer.Address = model.Address;
@@ -76,7 +98,7 @@ namespace CoWorking.Biz.Customer
             {
                 Customer.ImagePart = await this.SaveFile(model.ImagePart);
             }
-     
+
             _context.Customers.UpdateRange(Customer);
             await _context.SaveChangesAsync();
 
