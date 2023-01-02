@@ -35,13 +35,14 @@ namespace CoWorking.Biz.CategoryOffice
                                       join office in _context.Offices on p.OfficeId equals office.ID
                                       select new CategoryOfficeView
                                       {
+                                          ID = category.ID,
                                           Name = category.Name,
                                           Decription = category.Decription,
-                                          OfficeInCategory = category.OfficeInCategories.Select(k => new Model.OfficeInCategory.View
-                                          {
-                                              CategoryOfficeId = k.CategoryOfficeId,
-                                              OfficeId = k.OfficeId,
-                                          }).ToList()
+                                        //   OfficeInCategory = category.OfficeInCategories.Select(k => new Model.OfficeInCategory.View
+                                        //   {
+                                        //       CategoryOfficeId = k.CategoryOfficeId,
+                                        //       OfficeId = k.OfficeId,
+                                        //   }).ToList()
 
                                       })
                                       .ToListAsync();

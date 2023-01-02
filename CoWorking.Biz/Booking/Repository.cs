@@ -23,7 +23,14 @@ namespace CoWorking.Biz.Booking
 
         public async Task<View> Create(New request)
         {
-            var Booking = _mapper.Map<New, Data.Model.Booking>(request);
+            var Booking = new Data.Model.Booking
+            {
+                UserId = request.UserId,
+                OfficeId = request.OfficeId,
+                StartTime = request.StartTime,
+                EndTime = request.EndTime,
+                Total = request.Total,
+            };
             await _context.Bookings.AddAsync(Booking);
             await _context.SaveChangesAsync();
             return _mapper.Map<Data.Model.Booking, View>(Booking);
