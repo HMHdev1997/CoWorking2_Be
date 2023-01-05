@@ -21,7 +21,7 @@ namespace CoWorking.Biz.OfficeImage
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _enviromemt;
         private readonly IStorageService _storageService;
-        private const string USER_CONTENT_FOLDER_NAME = "Image";
+        private const string USER_CONTENT_FOLDER_NAME = "Images";
 
 
         public Repository(DomainDbContext context, IMapper mapper, IWebHostEnvironment enviromemt, IStorageService storageService)

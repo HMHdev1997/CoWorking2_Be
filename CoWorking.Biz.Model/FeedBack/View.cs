@@ -9,7 +9,7 @@ namespace CoWorking.Biz.Model.FeedBack
     public class View
     {
         public int ID { set; get; }
-        public int CustomerId { set; get; }
+        public int UserId { set; get; }
         public int OfficeId { set; get; }
         public string Message { set; get; }
         public int Votes { set; get; }

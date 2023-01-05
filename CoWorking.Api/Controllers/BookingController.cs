@@ -36,5 +36,50 @@ namespace CoWorking.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetBooking(int id)
+        {
+            try
+            {
+                var item = await _repository.Booking.GetById(id);
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"get Booking {id} Error");
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("All")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var item = await _repository.Booking.GetAll();
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"get Booking  Error");
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("User")]
+        public async Task<IActionResult> GetBookingbyUserId(int id)
+        {
+            try
+            {
+                var item = await _repository.Booking.GetBookingbyUserId(id);
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"get Booking  Error");
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

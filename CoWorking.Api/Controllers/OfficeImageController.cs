@@ -21,7 +21,7 @@ namespace CoWorking.Api.Controllers
             _repository = repository;
             _logger = logger;
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> CreateImage ([FromForm]New model)
         {
@@ -42,7 +42,15 @@ namespace CoWorking.Api.Controllers
             try
             {
                 var item = await _repository.OfficeImage.GetById(id);
-                return Ok(item);
+                string path = @"./wwwroot/" + item.PartImage;
+
+                if (path.Contains("/Image/"))
+                {
+                    path = path.Replace("/Image/", "/Images/");
+
+                }
+                Byte[] b = System.IO.File.ReadAllBytes(path);
+                return Ok(File(b, "image/jpeg"));
             }
             catch (Exception ex)
             {
