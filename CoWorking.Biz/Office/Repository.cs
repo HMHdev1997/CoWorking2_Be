@@ -110,11 +110,11 @@ namespace CoWorking.Biz.Office
         public async Task<PageResult<List>> GetAllPaging(GetPublicProductRequest request)
         {
             var query = (from p in _context.Offices
-                         join pic in _context.OfficeImages on p.ID equals pic.OfficeId
+                        //  join pic in _context.OfficeImages on p.ID equals pic.OfficeId
                          //join c in _context.OfficeInCategories on p.ID equals c.OfficeId
                          //join a in _context.Areas on p.AreaId equals a.ID
                          //join s in _context.Spaces on p.ID equals s.OfficeId
-                         select new { p, pic });
+                         select new { p });
             //paing
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
@@ -129,7 +129,7 @@ namespace CoWorking.Biz.Office
                                 Discount = x.p.Discount,
                                 HotFlag = x.p.HotFlag,
                                 ViewCount = x.p.ViewCount,
-                                ThumbnailImage = x.pic.PartImage,
+                                // ThumbnailImage = x.pic.PartImage,
                             }).ToListAsync();
             var pagedResult = new Model.PageResult<List>()
             {
