@@ -23,7 +23,7 @@ namespace CoWorking.Biz
         public RepositoryWapper(DomainDbContext context, IMapper mapper, IWebHostEnvironment environment, IStorageService storageService)
         {
             _context = context;
-            _mapper = mapper;         
+            _mapper = mapper;
             _enviromemt = environment;
             _storageService = storageService;
 
@@ -42,10 +42,10 @@ namespace CoWorking.Biz
         public Area.IRepository Area => _area ??= new Area.Repository(_context, _mapper);
 
         private CategorySpace.IRepository _categorySpace;
-        public CategorySpace.IRepository CategorySpace => _categorySpace ??= new CategorySpace.Repository(_context, _mapper) ;
+        public CategorySpace.IRepository CategorySpace => _categorySpace ??= new CategorySpace.Repository(_context, _mapper);
 
         private Office.IRepository _office;
-        public Office.IRepository Office => _office ??= new Office.Repository(_context, _mapper, _enviromemt,_storageService);
+        public Office.IRepository Office => _office ??= new Office.Repository(_context, _mapper, _enviromemt, _storageService);
 
         private User.IRepository _user;
         public User.IRepository User => _user ??= new User.Repository(_context, _mapper);
@@ -54,10 +54,11 @@ namespace CoWorking.Biz
         public OfficeImage.IRepository OfficeImage => _officeImage ??= new OfficeImage.Repository(_context, _mapper, _enviromemt, _storageService);
 
         private Booking.IRepository _booking;
-        public Booking.IRepository Booking => _booking ??=new Booking.Repository(_context, _mapper);
-
+        public Booking.IRepository Booking => _booking ??= new Booking.Repository(_context, _mapper);
+        private BookingDetail.IRepository _bookingDetail;
+        public BookingDetail.IRepository BookingDetail => _bookingDetail ??= new BookingDetail.Repository(_context, _mapper);
         private OfficeInCategory.IRepository _officeInCategory;
-        public OfficeInCategory.IRepository OfficeInCategory => _officeInCategory ??= new OfficeInCategory.Repository(_context,_mapper);
+        public OfficeInCategory.IRepository OfficeInCategory => _officeInCategory ??= new OfficeInCategory.Repository(_context, _mapper);
 
         private Role.IRepository _role;
         public Role.IRepository Role => _role ??= new Role.Repository(_context, _mapper);
@@ -66,6 +67,6 @@ namespace CoWorking.Biz
         public FeedBack.IRepository FeedBack => _feedBack ??= new FeedBack.Repository(_context, _mapper);
 
         private Staff.IRepository _staff;
-        public Staff.IRepository Staff => _staff ??= new Staff.Repository(_context,_mapper);
+        public Staff.IRepository Staff => _staff ??= new Staff.Repository(_context, _mapper);
     }
 }

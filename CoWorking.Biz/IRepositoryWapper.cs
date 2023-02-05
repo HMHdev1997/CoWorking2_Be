@@ -17,6 +17,7 @@ namespace CoWorking.Biz
         Office.IRepository Office { get; }
         OfficeImage.IRepository OfficeImage { get; }
         Booking.IRepository Booking { get; }
+        BookingDetail.IRepository BookingDetail { get; }
         OfficeInCategory.IRepository OfficeInCategory { get; }
         Role.IRepository Role { get; }
         FeedBack.IRepository FeedBack { get; }
