@@ -104,7 +104,8 @@ namespace CoWorking.Data.Access.Data.Migrations.MsSql
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
-
+                    b.Property<string>("SeatPosition")
+                        .HasColumnType("nvarchar(max)");
                     b.Property<int>("Number")
                         .HasColumnType("int");
 

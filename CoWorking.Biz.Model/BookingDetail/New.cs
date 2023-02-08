@@ -14,6 +14,7 @@ namespace CoWorking.Biz.Model.BookingDetail
         public int Number { set; get; }
         public double Price { set; get; }
         public string Note { set; get; }
+        public string SeatPosition { set; get; }
         public DateTime? StartTime { set; get; }
         public DateTime? EndTime { set; get; }
         public int PaymentStatus { set; get; }

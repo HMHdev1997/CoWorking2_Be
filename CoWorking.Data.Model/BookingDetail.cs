@@ -19,6 +19,8 @@ namespace CoWorking.Data.Model
         public int Number { set; get; }
         public double Price { set; get; }
         public string Note { set; get; }
+        public string SeatPosition { set; get; }
+
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}")]
         public DateTime StartTime { set; get; }
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}")]
