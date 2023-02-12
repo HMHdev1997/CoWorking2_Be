@@ -81,7 +81,7 @@ namespace CoWorking.Biz.Customer
                 };
                 if (model.ImagePart != null)
                 {
-                    await this.SaveFile(model.ImagePart);
+                    user.ImagePart = await this.SaveFile(model.ImagePart);
                 }
 
                 await _context.Customers.AddAsync(user);
