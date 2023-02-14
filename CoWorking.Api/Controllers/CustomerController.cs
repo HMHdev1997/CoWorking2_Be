@@ -80,5 +80,32 @@ namespace CoWorking.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("Image")]
+        public async Task<IActionResult> GetCustomerImage(string path)
+        {
+            try
+            {
+
+                if (path.Contains("/Image/"))
+                {
+                    path = path.Replace("/Image/", "/Images/");
+
+                }
+                if (path.Contains("/User/"))
+                {
+                    path = path.Replace("/User", "");
+
+                }
+                path = @"./wwwroot/" + path;
+                Byte[] b = System.IO.File.ReadAllBytes(path);
+                return Ok(File(b, "image/jpeg"));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"Get Office Image ");
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
