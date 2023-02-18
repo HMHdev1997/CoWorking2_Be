@@ -13,6 +13,7 @@ namespace CoWorking.Biz.Model.User
         public string Email { set; get; }
         public int PhoneNumbers { set; get; }
         public string Password { set; get; }
+        public double Point { set; get; }
         public Biz.Model.Customers.View User { set; get; } = new Customers.View();
     }
 
