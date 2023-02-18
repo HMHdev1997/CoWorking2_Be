@@ -66,6 +66,21 @@ namespace CoWorking.Api.Controllers
             }
         }
 
+        [HttpPatch("Point")]
+        public async Task<IActionResult> UpdatePoint(int UserId, double Point)
+        {
+            try
+            {
+                var item = await _repository.Customer.UpdatePoint(UserId, Point);
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex, $"Get Customer Error");
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpDelete]
         public async Task<IActionResult> DeleteAync([FromForm]int id)
         {

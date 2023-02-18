@@ -13,7 +13,8 @@ namespace CoWorking.Biz.Customer
         Task<Model.Customers.View> GetById(int UserId);
         Task<Model.Customers.View> CreateAync(Model.Customers.New model);
         Task<Model.Customers.View> Update(Model.Customers.Edit model);
-        
+        Task<Model.Customers.View> UpdatePoint(int UserId, double Point);
+
         Task DeleteAync(int id);
     }
 }

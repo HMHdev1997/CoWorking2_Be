@@ -40,6 +40,7 @@ namespace CoWorking.Biz.Customer
                 Address = model.Address,
                 Gender = model.Gender,
                 Age = model.Age,
+                Point = model.Point,
             };
             if (model.ImagePart != null)
             {
@@ -61,12 +62,12 @@ namespace CoWorking.Biz.Customer
         public async Task<View> GetById(int UserId)
         {
             var item = await _context.Customers.FirstOrDefaultAsync(q => q.UserId == UserId);
+            System.Console.WriteLine(item.Point);
             return _mapper.Map<Data.Model.Customer, View>(item);
         }
 
         public async Task<View> Update(Edit model)
         {
-            Debug.WriteLine(model.Id);
             var Customer = await _context.Customers.AsNoTracking().FirstOrDefaultAsync(q => q.UserId == model.Id);
             if (Customer == null)
             {
@@ -78,6 +79,7 @@ namespace CoWorking.Biz.Customer
                     Address = model.Address,
                     Gender = model.Gender,
                     Age = model.Age,
+                    Point = model.Point,
                 };
                 if (model.ImagePart != null)
                 {
@@ -94,10 +96,28 @@ namespace CoWorking.Biz.Customer
             Customer.Gender = model.Gender;
             Customer.Age = model.Age;
             Customer.DateOfBirth = model.DateOfBirth;
+            Customer.Point = model.Point;
             if (model.ImagePart != null)
             {
                 Customer.ImagePart = await this.SaveFile(model.ImagePart);
             }
+
+            _context.Customers.UpdateRange(Customer);
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<Data.Model.Customer, View>(Customer);
+        }
+        
+        public async Task<View> UpdatePoint(int UserId, double Point)
+        {
+            var Customer = await _context.Customers.AsNoTracking().FirstOrDefaultAsync(q => q.UserId == UserId);
+            if (Customer == null)
+            {
+                
+            }
+
+            Customer.Point = Point;
+            
 
             _context.Customers.UpdateRange(Customer);
             await _context.SaveChangesAsync();
